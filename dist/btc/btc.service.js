@@ -14,7 +14,7 @@ const config = require("config");
 const serverConfig = config.get('server');
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
-    host: 'localhost:9200',
+    host: `${serverConfig.elasticUrl}`,
     log: 'trace',
     apiVersion: '7.2',
 });

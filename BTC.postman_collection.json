@@ -67,6 +67,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "pull data to elastic db",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"blockStart\": \"3\",\n  \"blockEnd\": \"4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/btc/fetchToElastic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"btc",
+						"fetchToElastic"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
