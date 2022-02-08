@@ -2,6 +2,7 @@ server:
   port: 5001
   apiKey: b40e1f5f-8145-499e-b8a0-a7e7f0678a23
   tatumUrl: https://api-eu1.tatum.io/v3
+  elasticUrl: //please add your elastic url here
 
 jwt:
   expiresIn: 3600

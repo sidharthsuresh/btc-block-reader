@@ -1,0 +1,1 @@
+{"version":3,"file":"get-blocks.dto.js","sourceRoot":"","sources":["../../../src/btc/dto/get-blocks.dto.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,6CAA8C;AAC9C,qDAMyB;AAEzB,MAAa,YAAY;CAUxB;AAPC;IAFC,0BAAQ,EAAE;IACV,qBAAW,CAAC,EAAE,QAAQ,EAAE,IAAI,EAAE,CAAC;;gDACb;AAKnB;IAHC,0BAAQ,EAAE;IACV,qBAAW,CAAC,EAAE,QAAQ,EAAE,IAAI,EAAE,CAAC;IAC/B,4BAAU,EAAE;;8CACI;AARnB,oCAUC"}

@@ -9,8 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BtcService = void 0;
 const common_1 = require("@nestjs/common");
 const axios_1 = require("axios");
+const uuid_1 = require("uuid");
 const config = require("config");
 const serverConfig = config.get('server');
+var elasticsearch = require('elasticsearch');
+var client = new elasticsearch.Client({
+    host: 'localhost:9200',
+    log: 'trace',
+    apiVersion: '7.2',
+});
 let BtcService = class BtcService {
     constructor() {
         this.logger = new common_1.Logger('BtcService');
@@ -72,6 +79,33 @@ let BtcService = class BtcService {
         return ({
             "totalFees": fee
         });
+    }
+    async writeBlocksToElastic(blockStart, blockEnd) {
+        let blockData;
+        let start = parseInt(blockStart);
+        let end = parseInt(blockEnd);
+        for (let i = start; i <= end; i++) {
+            try {
+                blockData = await axios_1.default.request({
+                    method: 'GET',
+                    url: `${serverConfig.tatumUrl}/bitcoin/block/${blockStart}`,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': serverConfig.apiKey
+                    },
+                });
+            }
+            catch (err) {
+                throw new common_1.InternalServerErrorException('unable to read from mainnet');
+            }
+            blockData = await client.index({
+                index: 'btc-block-data',
+                id: uuid_1.v4(),
+                type: 'btcBlock',
+                body: blockData.data
+            });
+        }
+        return ("data stored successfully on elastic");
     }
 };
 BtcService = __decorate([

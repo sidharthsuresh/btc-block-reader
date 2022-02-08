@@ -16,6 +16,7 @@ exports.BtcController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const btc_service_1 = require("./btc.service");
+const get_blocks_dto_1 = require("./dto/get-blocks.dto");
 let BtcController = class BtcController {
     constructor(btcService) {
         this.btcService = btcService;
@@ -32,6 +33,10 @@ let BtcController = class BtcController {
     async blockTransactionFee(blockNumber) {
         this.logger.verbose(`Calculating total fee in Block Number : ${blockNumber}`);
         return this.btcService.blockTransactionFee(blockNumber);
+    }
+    async fetchBlocksToElastic(getBlocksDto) {
+        this.logger.verbose(`Pulling BTC blocks from ${getBlocksDto.blockStart} to ${getBlocksDto.blockEnd}`);
+        return this.btcService.writeBlocksToElastic(getBlocksDto.blockStart, getBlocksDto.blockEnd);
     }
 };
 __decorate([
@@ -94,6 +99,26 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], BtcController.prototype, "blockTransactionFee", null);
+__decorate([
+    common_1.Post('/fetchToElastic'),
+    swagger_1.ApiOperation({
+        operationId: 'fetchToElastic',
+        summary: 'Fetch block numbers between the values and write to elastic',
+    }),
+    swagger_1.ApiResponse({
+        status: common_1.HttpStatus.BAD_REQUEST,
+        description: 'failed',
+    }),
+    swagger_1.ApiResponse({
+        status: common_1.HttpStatus.CREATED,
+        description: 'Success',
+    }),
+    swagger_1.ApiTags('btc'),
+    __param(0, common_1.Body(common_1.ValidationPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [get_blocks_dto_1.GetBlocksDto]),
+    __metadata("design:returntype", Promise)
+], BtcController.prototype, "fetchBlocksToElastic", null);
 BtcController = __decorate([
     common_1.Controller('btc'),
     __metadata("design:paramtypes", [btc_service_1.BtcService])

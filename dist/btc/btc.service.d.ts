@@ -3,4 +3,5 @@ export declare class BtcService {
     getBtcBlock(blockNumber: string): Promise<any>;
     getBtcBlockTransactions(blockNumber: string): Promise<any>;
     blockTransactionFee(blockNumber: string): Promise<any>;
+    writeBlocksToElastic(blockStart: string, blockEnd: string): Promise<any>;
 }

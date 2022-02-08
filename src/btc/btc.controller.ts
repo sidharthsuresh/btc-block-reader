@@ -1,12 +1,16 @@
 import {
     Controller,
     Get,
+    Body,
     Logger,
+    Post,
     Param,
-    HttpStatus
+    HttpStatus,
+    ValidationPipe
   } from '@nestjs/common';
   import { ApiResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { BtcService } from './btc.service';
+import { GetBlocksDto } from './dto/get-blocks.dto';
 
 @Controller('btc')
 export class BtcController {
@@ -75,6 +79,27 @@ export class BtcController {
           ): Promise<any> {
             this.logger.verbose(`Calculating total fee in Block Number : ${blockNumber}`);
             return this.btcService.blockTransactionFee(blockNumber);
+          }
+
+        @Post('/fetchToElastic')
+         @ApiOperation({
+          operationId: 'fetchToElastic',
+          summary: 'Fetch block numbers between the values and write to elastic',
+        })
+        @ApiResponse({
+            status: HttpStatus.BAD_REQUEST,
+            description: 'failed',
+          })
+          @ApiResponse({
+            status: HttpStatus.CREATED,
+            description: 'Success',
+          })
+        @ApiTags('btc')
+        async fetchBlocksToElastic(
+           @Body(ValidationPipe) getBlocksDto: GetBlocksDto,
+          ): Promise<any> {
+            this.logger.verbose(`Pulling BTC blocks from ${getBlocksDto.blockStart} to ${getBlocksDto.blockEnd}`);
+            return this.btcService.writeBlocksToElastic(getBlocksDto.blockStart, getBlocksDto.blockEnd);
           }
 
     }
