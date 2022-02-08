@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "d1b0e1b8-2498-4752-a804-1a38d3e65ed3",
+		"name": "BTC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET total block fees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/btc/blockTransactionFee/662340",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"btc",
+						"blockTransactionFee",
+						"662340"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Btc Whole Block",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/btc/getBtcBlock/662340",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"btc",
+						"getBtcBlock",
+						"662340"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get transactions in a block",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/btc/getBtcBlockTransactions/662340",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"btc",
+						"getBtcBlockTransactions",
+						"662340"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
