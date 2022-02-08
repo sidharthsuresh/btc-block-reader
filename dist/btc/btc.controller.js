@@ -36,6 +36,10 @@ let BtcController = class BtcController {
 };
 __decorate([
     common_1.Get('/getBtcBlock/:blockNumber'),
+    swagger_1.ApiOperation({
+        operationId: 'getBtcBlock',
+        summary: 'Get the whole data in the btc block',
+    }),
     swagger_1.ApiResponse({
         status: common_1.HttpStatus.BAD_REQUEST,
         description: 'failed',
@@ -52,6 +56,10 @@ __decorate([
 ], BtcController.prototype, "getBtcBlock", null);
 __decorate([
     common_1.Get('/getBtcBlockTransactions/:blockNumber'),
+    swagger_1.ApiOperation({
+        operationId: 'getBtcBlockTransactions',
+        summary: 'Get the entire transactions list and data in transactions',
+    }),
     swagger_1.ApiResponse({
         status: common_1.HttpStatus.BAD_REQUEST,
         description: 'failed',
@@ -68,6 +76,10 @@ __decorate([
 ], BtcController.prototype, "getBtcBlockTransactions", null);
 __decorate([
     common_1.Get('/blockTransactionFee/:blockNumber'),
+    swagger_1.ApiOperation({
+        operationId: 'blockTransactionFee',
+        summary: 'Get the total transaction fee in the block',
+    }),
     swagger_1.ApiResponse({
         status: common_1.HttpStatus.BAD_REQUEST,
         description: 'failed',

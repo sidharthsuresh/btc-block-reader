@@ -1377,7 +1377,7 @@
         "affectsGlobalScope": false
       },
       "../src/btc/btc.controller.ts": {
-        "version": "22cbfd25515016cc187278f065b5dbd50f9f9ec8373fc53e351ef4ea9b854cca",
+        "version": "e213a67829cc954eca94ff6f25701131edac2b305abc371b98e4e7d0dc7ddcc7",
         "signature": "602ecc9fdf9203e40baad856cdff9c1b05de7dcb0024a81bf95d475f3c43331b",
         "affectsGlobalScope": false
       },

@@ -5,7 +5,7 @@ import {
     Param,
     HttpStatus
   } from '@nestjs/common';
-  import { ApiResponse, ApiTags } from '@nestjs/swagger';
+  import { ApiResponse, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { BtcService } from './btc.service';
 
 @Controller('btc')
@@ -15,6 +15,10 @@ export class BtcController {
     constructor(private btcService: BtcService) {}
 
     @Get('/getBtcBlock/:blockNumber')
+    @ApiOperation({
+    operationId: 'getBtcBlock',
+    summary: 'Get the whole data in the btc block',
+  })
     @ApiResponse({
         status: HttpStatus.BAD_REQUEST,
         description: 'failed',
@@ -32,6 +36,10 @@ export class BtcController {
       }
 
       @Get('/getBtcBlockTransactions/:blockNumber')
+        @ApiOperation({
+          operationId: 'getBtcBlockTransactions',
+          summary: 'Get the entire transactions list and data in transactions',
+        })
       @ApiResponse({
           status: HttpStatus.BAD_REQUEST,
           description: 'failed',
@@ -49,6 +57,10 @@ export class BtcController {
         }
 
         @Get('/blockTransactionFee/:blockNumber')
+         @ApiOperation({
+          operationId: 'blockTransactionFee',
+          summary: 'Get the total transaction fee in the block',
+        })
         @ApiResponse({
             status: HttpStatus.BAD_REQUEST,
             description: 'failed',
